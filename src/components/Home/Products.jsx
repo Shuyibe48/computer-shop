@@ -21,7 +21,7 @@ const Products = () => {
                 <Card key={card.id} card={card} />
             ))}
         </div>
-    );
-};
+    )
+}
 
-export default Products;
+export default Products
