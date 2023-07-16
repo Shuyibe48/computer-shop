@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Menubar = () => {
+    const { user, logOut } = useContext(AuthContext)
+
     const [isMenuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -43,7 +46,22 @@ const Menubar = () => {
                         <li><Link className="font-light text-cyan-100" to="/">Home</Link></li>
                         <li><Link className="font-light text-cyan-100" to="dashboard">Dashboard</Link></li>
                         <li><Link className="font-light text-cyan-100" to="cart">Cart</Link></li>
-                        <li><Link className="font-light text-cyan-100" to="login">Login</Link></li>
+                        <>
+                            {
+                                !user && <>
+                                    <li><Link className="font-light text-cyan-100" to="login">Login</Link></li>
+                                    <li><Link className="font-light text-cyan-100" to="signUp">SignUp</Link></li>
+                                </>
+                            }
+                        </>
+                        <>
+                            {
+                                user && <>
+                                    <li><img className="w-8 h-8 rounded-full" src={user?.photoURL} alt="avatar" /></li>
+                                    <li onClick={logOut} className="font-light text-cyan-100">Logout</li>
+                                </>
+                            }
+                        </>
                     </ul>
                 </div>
             </div>
