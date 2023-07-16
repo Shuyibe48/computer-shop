@@ -1,12 +1,12 @@
 import { createBrowserRouter, } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
-import Cart from "../pages/usual_pages/Cart";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import DashboardLayout from "../layouts/DashboardLayout";
 import AddProduct from "../pages/Dashboard/AddProduct";
 import MyProducts from "../pages/Dashboard/MyProducts";
+import Update from "../pages/Dashboard/Update";
 
 
 const router = createBrowserRouter([
@@ -19,16 +19,17 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: "cart",
-                element: <Cart />
-            },
-            {
                 path: "login",
                 element: <Login />
             },
             {
                 path: "signUp",
                 element: <SignUp />
+            },
+            {
+                path: "/update/:id",
+                element: <Update />,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/products/${params.id}`)
             }
         ]
     },
@@ -43,9 +44,9 @@ const router = createBrowserRouter([
             {
                 path: "dashboard/myProducts",
                 element: <MyProducts />
-            }
+            },
         ]
-    }
+    },
 ]);
 
 export default router
