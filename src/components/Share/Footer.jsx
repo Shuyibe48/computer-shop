@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
             <div className="bg-gray-800 py-4">
                 <div className="container mx-auto text-center text-gray-400 text-sm">
-                    <p>&copy; 2023 Your App. All rights reserved.</p>
+                    <p>&copy; 2023 Computer Shop. All rights reserved.</p>
                 </div>
             </div>
         </footer>

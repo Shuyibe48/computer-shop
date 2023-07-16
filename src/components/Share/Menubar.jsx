@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Menubar = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -42,8 +43,8 @@ const Menubar = () => {
                         <li><a href="/" className="text-gray-300 hover:text-white">Home</a></li>
                         <li><a href="/" className="text-gray-300 hover:text-white">Dashboard</a></li>
                         <li><a href="/about" className="text-gray-300 hover:text-white">About</a></li>
-                        <li><a href="/cart" className="text-gray-300 hover:text-white">Cart</a></li>
-                        <li><a href="/cart" className="text-gray-300 hover:text-white">Logout</a></li>
+                        <li><Link className="font-light text-cyan-100" to="cart">Cart</Link></li>
+                        <li><a href="/" className="text-gray-300 hover:text-white">Logout</a></li>
                     </ul>
                 </div>
             </div>

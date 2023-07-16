@@ -5,9 +5,7 @@ import Menubar from "../../components/Share/Menubar";
 const Home = () => {
     return (
         <div>
-            <Menubar />
             <Products />
-            <Footer />
         </div>
     );
 };
