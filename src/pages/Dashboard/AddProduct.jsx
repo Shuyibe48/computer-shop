@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import { addProduct } from "../../api/product";
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext)
@@ -10,60 +11,35 @@ const AddProduct = () => {
         event.preventDefault();
 
         const form = event.target
-        const className = event.target.className.value
-        const instructorName = user?.displayName
+        const productName = event.target.productName.value
+        const sellerName = user?.displayName
         const email = user?.email
-        const availableSeats = event.target.availableSeats.value
+        const availableProduct = event.target.availableProduct.value
         const price = event.target.price.value
 
-        // Image Upload
-        const image = event.target.classImage.files[0]
-        const formData = new FormData()
-        formData.append('image', image)
+        const productData = {
+            productName,
+            sellerName,
+            email,
+            availableProduct,
+            price: parseFloat(price),
+            seller: {
+                name: user?.displayName,
+                image: user?.photoURL,
+                email: user?.email,
+            }
+        }
 
-        const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_KEY
-            }`
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(res => res.json())
-            .then(imageData => {
-                const imageUrl = imageData.data.display_url
-                const classData = {
-                    className,
-                    instructorName,
-                    email,
-                    availableSeats,
-                    price: parseFloat(price),
-                    image: imageUrl,
-                    host: {
-                        name: user?.displayName,
-                        image: user?.photoURL,
-                        email: user?.email,
-                    },
-                    status: 'pending',
-                    feedback: ''
-                }
-
-
-
-
-                // post class data to server
-                // addClass(classData)
-                //     .then(data => {
-                //         console.log(data)
-                //     })
-                //     .catch(err => console.log(err))
-
-
-
-                
-                form.reset()
+        addProduct(productData)
+            .then(data => {
+                console.log(data)
+                window.alert('Products Added Successfully.')
             })
-            .catch(err => {
-                console.log(err.message)
-            })
+            .catch(err => console.log(err))
+
+            
+        form.reset()
+        console.log(productData);
 
     };
 
@@ -76,36 +52,24 @@ const AddProduct = () => {
                 <h2 className="text-2xl font-bold mb-8 text-center">Add A Product</h2>
 
                 <div className="mb-4">
-                    <label htmlFor="className" className="block mb-2 font-medium">
-                        Class Name
+                    <label htmlFor="productName" className="block mb-2 font-medium">
+                        Product Name
                     </label>
                     <input
                         type="text"
-                        id="className"
+                        id="productName"
                         className="border border-gray-300 rounded-md w-full py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"
                         required
                     />
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="classImage" className="block mb-2 font-medium">
-                        Class Image
-                    </label>
-                    <input
-                        type="file"
-                        id="classImage"
-                        accept='image/*'
-                        required
-                    />
-                </div>
-
-                <div className="mb-4">
-                    <label htmlFor="instructorName" className="block mb-2 font-medium">
+                    <label htmlFor="sellerName" className="block mb-2 font-medium">
                         Seller Name
                     </label>
                     <input
                         type="text"
-                        id="instructorName"
+                        id="sellerName"
                         className="border border-gray-300 rounded-md w-full py-2 px-3 bg-gray-100"
                         value={user?.displayName}
                         readOnly
@@ -113,12 +77,12 @@ const AddProduct = () => {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="instructorEmail" className="block mb-2 font-medium">
+                    <label htmlFor="sellerEmail" className="block mb-2 font-medium">
                         Seller Email
                     </label>
                     <input
                         type="email"
-                        id="instructorEmail"
+                        id="sellerEmail"
                         className="border border-gray-300 rounded-md w-full py-2 px-3 bg-gray-100"
                         value={user?.email}
                         readOnly
@@ -126,12 +90,12 @@ const AddProduct = () => {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="availableSeats" className="block mb-2 font-medium">
+                    <label htmlFor="availableProduct" className="block mb-2 font-medium">
                         Available Product
                     </label>
                     <input
                         type="number"
-                        id="availableSeats"
+                        id="availableProduct"
                         className="border border-gray-300 rounded-md w-full py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"
                         required
                     />
