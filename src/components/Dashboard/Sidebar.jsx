@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { GrLogout } from 'react-icons/gr'
-import { FcSettings } from 'react-icons/fc'
+import { FcHome } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
 
 import { AuthContext } from '../../provider/AuthProvider'
@@ -54,7 +54,7 @@ const Sidebar = () => {
                                     referrerPolicy='no-referrer'
                                 />
                             </Link>
-                            <Link to='/'>Computer Shop</Link>
+                            <Link className='text-cyan-100' to='/'>Computer Shop</Link>
                         </div>
                         <div className='flex flex-col items-center mt-6 -mx-2'>
                             <Link to='/dashboard'>
@@ -75,12 +75,14 @@ const Sidebar = () => {
                         <nav>
                             <>
                                 <Link
+                                    onClick={handleToggle}
                                     to='dashboard/addAProduct'
                                     className='flex items-center px-4 py-2 mt-5 border-b border-gray-100 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700'
                                 >
                                     <span className='mx-4 font-medium text-cyan-100'>Add A Product</span>
                                 </Link>
                                 <Link
+                                    onClick={handleToggle}
                                     to='dashboard/myProducts'
                                     className='flex items-center px-4 py-2 mt-5 border-b border-gray-100 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700'
                                 >
@@ -100,11 +102,11 @@ const Sidebar = () => {
                             }`
                         }
                     >
-                        <FcSettings className='w-5 h-5' />
+                        <FcHome className='w-5 h-5' />
 
                         <span className='mx-4 text-gray-100 font-medium'>Home</span>
                     </NavLink>
-                    
+
                     <button
                         onClick={handleLogOut}
                         className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
