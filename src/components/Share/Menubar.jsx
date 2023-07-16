@@ -40,11 +40,10 @@ const Menubar = () => {
                 </div>
                 <div className={`md:flex ${isMenuOpen ? 'block' : 'hidden'}`}>
                     <ul className="gap-4 space-x-4 md:space-x-0 flex flex-col md:flex-row items-center">
-                        <li><a href="/" className="text-gray-300 hover:text-white">Home</a></li>
-                        <li><a href="/" className="text-gray-300 hover:text-white">Dashboard</a></li>
-                        <li><a href="/about" className="text-gray-300 hover:text-white">About</a></li>
+                        <li><Link className="font-light text-cyan-100" to="/">Home</Link></li>
+                        <li><Link className="font-light text-cyan-100" to="dashboard">Dashboard</Link></li>
                         <li><Link className="font-light text-cyan-100" to="cart">Cart</Link></li>
-                        <li><a href="/" className="text-gray-300 hover:text-white">Logout</a></li>
+                        <li><Link className="font-light text-cyan-100" to="login">Login</Link></li>
                     </ul>
                 </div>
             </div>
