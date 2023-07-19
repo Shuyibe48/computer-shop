@@ -7,6 +7,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import AddProduct from "../pages/Dashboard/AddProduct";
 import MyProducts from "../pages/Dashboard/MyProducts";
 import Update from "../pages/Dashboard/Update";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 const router = createBrowserRouter([
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <DashboardLayout />,
+        element: <PrivateRoutes><DashboardLayout /></PrivateRoutes>,
         children: [
             {
                 path: "dashboard/addAProduct",

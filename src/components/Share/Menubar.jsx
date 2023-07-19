@@ -57,7 +57,7 @@ const Menubar = () => {
                             {
                                 user && <>
                                     <li><img className="w-8 h-8 rounded-full" src={user?.photoURL} alt="avatar" /></li>
-                                    <li onClick={logOut} className="font-light text-cyan-100">Logout</li>
+                                    <li onClick={logOut} className="font-light cursor-pointer text-cyan-100">Logout</li>
                                 </>
                             }
                         </>
