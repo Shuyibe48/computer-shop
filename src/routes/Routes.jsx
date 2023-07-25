@@ -8,6 +8,7 @@ import AddProduct from "../pages/Dashboard/AddProduct";
 import MyProducts from "../pages/Dashboard/MyProducts";
 import Update from "../pages/Dashboard/Update";
 import PrivateRoutes from "./PrivateRoutes";
+import GenerateJWT from "../pages/Generate-jwt/GenerateJWT";
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: "signUp",
                 element: <SignUp />
+            },
+            {
+                path: "generate-jwt",
+                element: <GenerateJWT />
             },
             {
                 path: "/update/:id",

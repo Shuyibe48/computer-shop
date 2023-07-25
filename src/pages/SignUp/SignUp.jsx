@@ -41,7 +41,6 @@ const SignUp = () => {
                     .then(result => {
                         updateUserProfile(name, imageUrl)
                             .then(() => {
-                                toast.success('Signup successful')
                                 navigate(from, { replace: true })
                                 console.log(result);
                             })
@@ -53,7 +52,6 @@ const SignUp = () => {
                     .catch(err => {
                         setLoading(false)
                         console.log(err.message)
-                        toast.error(err.message)
                     })
             })
             .catch(err => {

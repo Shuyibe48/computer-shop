@@ -11,6 +11,7 @@ import {
     updateProfile,
 } from 'firebase/auth'
 import app from '../firebase/firebase.config'
+import generateJwt from '../api/jwt'
 
 export const AuthContext = createContext(null)
 
@@ -58,11 +59,25 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setLoading(false)
             setUser(currentUser)
+            if (currentUser?.email) {
+                fetch(`${import.meta.env.VITE_API_URL}/jwt`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: currentUser?.email })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('access-token', data?.token)
+                    })
+            }
         })
         return () => {
             return unsubscribe()
         }
     }, [])
+    
 
     const authInfo = {
         user,
