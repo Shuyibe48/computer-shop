@@ -44,8 +44,8 @@ const Menubar = () => {
                 <div className={`md:flex ${isMenuOpen ? 'block' : 'hidden'}`}>
                     <ul className="gap-4 space-x-4 md:space-x-0 flex flex-col md:flex-row items-center">
                         <li><Link className="font-light text-cyan-100" to="/">Home</Link></li>
+                        <li><Link className="font-light text-cyan-100" to="cart">Cart</Link></li>
                         <li><Link className="font-light text-cyan-100" to="dashboard">Dashboard</Link></li>
-                        <li><Link className="font-light text-cyan-100" to="generate-jwt">JWT</Link></li>
                         <>
                             {
                                 !user && <>

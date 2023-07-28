@@ -8,7 +8,7 @@ import AddProduct from "../pages/Dashboard/AddProduct";
 import MyProducts from "../pages/Dashboard/MyProducts";
 import Update from "../pages/Dashboard/Update";
 import PrivateRoutes from "./PrivateRoutes";
-import GenerateJWT from "../pages/Generate-jwt/GenerateJWT";
+import Cart from "../pages/Cart/Cart";
 
 
 const router = createBrowserRouter([
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
                 element: <SignUp />
             },
             {
-                path: "generate-jwt",
-                element: <GenerateJWT />
+                path: "cart",
+                element: <PrivateRoutes><Cart /></PrivateRoutes>
             },
             {
                 path: "/update/:id",
